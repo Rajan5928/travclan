@@ -1,4 +1,6 @@
 import React,{useState,useEffect} from "react";
+import Button from '@material-ui/core/Button';
+import "./App.css";
 
 const App=()=> {
   const [customers,setCustomers] = useState([]);
@@ -35,20 +37,27 @@ const App=()=> {
       }
     }
     return (
-      <p>
-        <div key={i.id}>
-          {i.firstname} {i.lastname}
-        </div>
-        <div>{toggle ? minBid : maxBid}</div>
-      </p>
+      
+        <li key={i.id}>
+          <span>{i.firstname} {i.lastname}</span>
+          <span><img src={i.avatarUrl} alt="some error"/></span>
+          <span>{i.email}</span>
+          <span>{i.phone}</span>
+          <span>{i.hasPremium}</span>
+          <span>{toggle ? minBid : maxBid}</span>
+        </li>
+      
     );
   }
   return (
     <div className="App">
-      <button onClick={()=>setToggle(!toggle)}>Toggle</button>
+      <Button style={{display:"block",marginLeft: "auto",
+        marginRight: "auto"}} variant="contained" color="secondary" onClick={()=>setToggle(!toggle)}>Toggle</Button>
+      <ol>
         {customers_2.map((i) => {
           return generateCustomers(i);
         })}
+      </ol>
         <select
           style={{
             float: "right",
